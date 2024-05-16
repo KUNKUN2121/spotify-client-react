@@ -1,0 +1,34 @@
+.top-info{
+    display: flex;
+    height: 120px;
+    width: 100%;
+    gap: 10px;
+}
+
+img{
+    margin-left: 8px;
+    height: 100%;
+    border-radius: 14px;
+}
+
+p{
+    display: inline;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+}
+.title {
+    font-size: 24px;
+}
+
+/* アーティスト コンマ 入力 */
+.artist::after {
+    content: ", ";
+}
+.artist:last-child::after {
+    content: "";
+  }
