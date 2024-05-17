@@ -1,17 +1,20 @@
-.lyrics{
-    margin: 20px auto 20px;
-    width: 80%;
-    height: 160px;
-    font-size: 26px;
-    overflow:auto;
-      /*上下方向にはみ出した要素ををスクロールさせる*/
-    overflow-y: scroll;
-    /*スクロールバー非表示（IE・Edge）*/
-    -ms-overflow-style: none;
-    /*スクロールバー非表示（Firefox）*/
-    scrollbar-width: none;
-}
+.lyrics {
+    position: absolute;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    overflow: auto;
+  }
 
-.lyrics p{
-    display: block;
+  
+  .lyrics::-webkit-scrollbar {
+    display: none; /* スクロールバー非表示 */
+}
+.lrc {
+  flex: 1;
+  overflow-y: auto; 
+  /* スクロールバー非表示用*/
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE11 */
 }
