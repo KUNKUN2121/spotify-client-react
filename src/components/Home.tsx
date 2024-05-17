@@ -43,19 +43,21 @@ const Home = () => {
       }, []);
 
       useEffect(() => {
-        function abcd() {
+        function addProgress() {
             if(now != null){
-                if(now.progress_ms <now.duration_ms) {
-                    setNow(prevNow => ({ ...prevNow, progress_ms: prevNow.progress_ms + 200 }));
-                    setProgressBarPercent(now.progress_ms / now.duration_ms * 100);
-                }else{
-                    fetchData();
+                if(now.is_playing == true){
+                    if(now.progress_ms <now.duration_ms) {
+                        setNow(prevNow => ({ ...prevNow, progress_ms: prevNow.progress_ms + 200 }));
+                        setProgressBarPercent(now.progress_ms / now.duration_ms * 100);
+                    }
                 }
+            }else{
+                fetchData();
             }
         }
     
         const interval = setInterval(() => {
-          abcd();
+          addProgress();
         }, 200);
     
         return () => clearInterval(interval);
