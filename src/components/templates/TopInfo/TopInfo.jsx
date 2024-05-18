@@ -12,9 +12,7 @@ const TopInfo = ({now}) => {
             }
         };
     }
-    // data.artists.map((artist) => {
-    //     console.log(artist.name);
-    // })
+
   return (
     <>
     <div className="top-info">

@@ -5,6 +5,7 @@ import "./templates/TopInfo/TopInfo"
 import TopInfo from './templates/TopInfo/TopInfo';
 import Lyrics from './templates/Lyrics/Lyrics';
 import Controller from './templates/Controller/Controller';
+import QueueList from './templates/QueueList/QueueList';
 
 const Home = () => {
     const convertTimeView = (milliseconds) => {
@@ -28,9 +29,10 @@ const Home = () => {
     }
 
     // API取得
+    const roomId="xRouwJ6jx51gv0WPNdWv1kpcaFO5La4d";
     const fetchData = async () => {
         console.log("fetching");
-        const response = await fetch('http://100.73.31.2/api/now?room_id=xRouwJ6jx51gv0WPNdWv1kpcaFO5La4d');
+        const response = await fetch("http://100.73.31.2/api/now?room_id=" + roomId);
         const data = await response.json();
         data.progress_ms += getDelay(data);
         setNow(data);
@@ -39,7 +41,7 @@ const Home = () => {
         fetchData(); // 読み込み時に実行
         const interval = setInterval(() => {
           fetchData();
-        }, 5000);
+        }, 2000);
         return () => clearInterval(interval);
       }, []);
 
@@ -78,6 +80,7 @@ const Home = () => {
         {now ? <TopInfo now={now}/> : ""} 
         {now ? <Lyrics now={now}/> : ""} 
         {now ? <Controller now={now}/> : ""} 
+        {now ? <QueueList  now={now}/> : ""}
         <div className="main-contents"></div>
         </>
     );
