@@ -4,6 +4,7 @@ import "./Home.css"
 import "./templates/TopInfo/TopInfo"
 import TopInfo from './templates/TopInfo/TopInfo';
 import Lyrics from './templates/Lyrics/Lyrics';
+import Controller from './templates/Controller/Controller';
 
 const Home = () => {
     const convertTimeView = (milliseconds) => {
@@ -76,7 +77,7 @@ const Home = () => {
         </div>
         {now ? <TopInfo now={now}/> : ""} 
         {now ? <Lyrics now={now}/> : ""} 
-        {/* <TopInfo now={now}/> */}
+        {now ? <Controller now={now}/> : ""} 
         <div className="main-contents"></div>
         </>
     );
