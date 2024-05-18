@@ -6,21 +6,14 @@ const Lyrics = ({now}) => {
     const prevTitleRef = useRef(now.title);
     const scrollRef = useRef(null);
 
-    // 曲が変わったときの処理
-    useEffect(() => {
-        if(prevTitleRef.current !== now.title){
-            prevTitleRef.current = now.title; // タイトルを変更
-        }
-    }, [now.title]);
+    // スクロールのリセット処理
+    useRecoverAutoScrollImmediately({
+        currentRef: scrollRef,
+        isPlaying: true,
+        time: now.progress_ms
+    });
 
-      // スクロールのリセット処理
-  useRecoverAutoScrollImmediately({
-    currentRef: scrollRef,
-    isPlaying: true,
-    time: now.progress_ms
-  });
-
-      const lineRenderer = ({ index, active, line}) => {
+    const lineRenderer = ({ index, active, line}) => {
         return (
             <p
                 key={index}
@@ -40,21 +33,22 @@ const Lyrics = ({now}) => {
         flex: 1,
         minHeight: 0,
         overflowY: 'auto'  // 縦方向のスクロールを有効にする
-      };
+    };
 
-  return (
-    <div className="lyrics" ref={scrollRef}>
-      <Lrc 
-        className="lrc"
-        lrc={now.lyrics.syncedLyrics}
-        currentMillisecond={now.progress_ms}
-        lineRenderer={lineRenderer}
-        style={lrcStyle}
-        scrollOffset={-120}
-      />
-    </div>
-   
-  )
+    return (
+        <div className="lyrics-area" ref={scrollRef}>
+        <Lrc 
+            topBlank
+            bottomBlank
+            className="lrc"
+            lrc={now.lyrics.syncedLyrics}
+            currentMillisecond={now.progress_ms}
+            lineRenderer={lineRenderer}
+            style={lrcStyle}
+        />
+        </div>
+    
+    )
 }
 
 export default Lyrics

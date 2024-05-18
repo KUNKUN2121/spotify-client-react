@@ -1,10 +1,12 @@
-.lyrics {
-    position: absolute;
+.lyrics-area {
+    position: relative;
     flex: 1;
     display: flex;
     flex-direction: column;
-    height: 150px;
+    height: 40vh;
+    /* width: 100%; */
     overflow: auto;
+    margin: 16px 24px;
   }
 
   
@@ -12,9 +14,16 @@
     display: none; /* スクロールバー非表示 */
 }
 .lrc {
-  flex: 1;
-  overflow-y: auto; 
-  /* スクロールバー非表示用*/
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE11 */
+    width: 100%;
+    flex: 1;
+    overflow-y: auto; 
+    /* スクロールバー非表示用*/
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE11 */
+    /* overflow-wrap: break-word; */
+  }
+  
+.react-lrc-line{
+    padding-top: 8px;
+    width: 100%;
 }
