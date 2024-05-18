@@ -68,7 +68,7 @@ const Home = () => {
 
     return (
         <>
-        <div className="progress">
+        <div className="progressduration">
             <div className="bar" style={{
                 backgroundSize: progressBarPercent + "%",
             }}></div>
@@ -79,7 +79,7 @@ const Home = () => {
         </div>
         {now ? <TopInfo now={now}/> : ""} 
         {now ? <Lyrics now={now}/> : ""} 
-        {now ? <Controller now={now}/> : ""} 
+        {/* {now ? <Controller now={now}/> : ""}  */}
         {now ? <QueueList  now={now}/> : ""}
         <div className="main-contents"></div>
         </>
