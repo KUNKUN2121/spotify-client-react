@@ -1,11 +1,5 @@
-import React, { useEffect, useState } from 'react'
 import "normalize.css"
 import "./Home.css"
-import "./templates/TopInfo/TopInfo"
-import TopInfo from './templates/TopInfo/TopInfo';
-import Lyrics from './templates/Lyrics/Lyrics';
-import Controller from './templates/Controller/Controller';
-import QueueList from './templates/QueueList/QueueList';
 
 const Home = ({now}) => {
     const convertTimeView = (milliseconds) => {
@@ -28,10 +22,6 @@ const Home = ({now}) => {
                 <p className="duration">{convertTimeView(now ? now.duration_ms : "")}</p>
             </div>
         </div>
-        {now ? <TopInfo now={now}/> : ""} 
-
-        
-        <div className="main-contents"></div>
         </>
     );
 }

@@ -6,6 +6,7 @@ import "normalize.css"
 import Home from './components/Home.jsx'
 import AddMusic from './components/templates/AddMusic/AddMusic.jsx'
 import Lyrics from './components/templates/Lyrics/Lyrics.jsx'
+import TopInfo from './components/templates/TopInfo/TopInfo.jsx'
 import QueueList from './components/templates/QueueList/QueueList.jsx'
 import Controller from './components/templates/Controller/Controller.jsx'
 import { useEffect, useState } from 'react';
@@ -63,7 +64,9 @@ function App() {
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<>
+                {/* {progressBAR} */}
                 {now ? <Home now={now}/>: ""}
+                {now ? <TopInfo now={now}/> : ""} 
                 {now ? <Lyrics now={now}/> : ""}
                 {now ? <Controller now={now}/> : ""}  
                 {now ? <QueueList  now={now}/> : ""}
