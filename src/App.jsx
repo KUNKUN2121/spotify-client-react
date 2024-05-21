@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "normalize.css"
 
-import Home from './components/Home.tsx'
+import Home from './components/Home.jsx'
 function App() {
   return (
     <Router>
