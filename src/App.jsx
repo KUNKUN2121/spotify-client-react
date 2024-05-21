@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter, Router, Routes, Route, Link } from "react-router-dom";
 import "normalize.css"
 
-import Home from './components/Home.jsx'
+import Home from './components/templates/ProgressBar/ProgressBar.jsx'
 import AddMusic from './components/templates/AddMusic/AddMusic.jsx'
 import Lyrics from './components/templates/Lyrics/Lyrics.jsx'
 import TopInfo from './components/templates/TopInfo/TopInfo.jsx'

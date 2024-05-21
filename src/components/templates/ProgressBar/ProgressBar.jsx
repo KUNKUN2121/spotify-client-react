@@ -1,5 +1,5 @@
 import "normalize.css"
-import "./Home.css"
+import "./ProgressBar.css"
 
 const Home = ({now}) => {
     const convertTimeView = (milliseconds) => {
