@@ -1,7 +1,7 @@
 import "normalize.css"
 import "./ProgressBar.css"
 
-const Home = ({now}) => {
+const ProgressBar = ({now}) => {
     const convertTimeView = (milliseconds) => {
         const totalSeconds = Math.floor(milliseconds / 1000);
         const minutes = Math.floor(totalSeconds / 60);
@@ -26,4 +26,4 @@ const Home = ({now}) => {
     );
 }
 
-export default Home
+export default ProgressBar

@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter, Router, Routes, Route, Link } from "react-router-dom";
 import "normalize.css"
 
-import Home from './components/templates/ProgressBar/ProgressBar.jsx'
+import ProgressBar from './components/templates/ProgressBar/ProgressBar.jsx'
 import AddMusic from './components/templates/AddMusic/AddMusic.jsx'
 import Lyrics from './components/templates/Lyrics/Lyrics.jsx'
 import TopInfo from './components/templates/TopInfo/TopInfo.jsx'
@@ -65,7 +65,7 @@ function App() {
         <Routes>
             <Route path="/" element={<>
                 {/* {progressBAR} */}
-                {now ? <Home now={now}/>: ""}
+                {now ? <ProgressBar now={now}/>: ""}
                 {now ? <TopInfo now={now}/> : ""} 
                 {now ? <Lyrics now={now}/> : ""}
                 {now ? <Controller now={now}/> : ""}  
