@@ -64,7 +64,6 @@ function App() {
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<>
-                {/* {progressBAR} */}
                 {now ? <ProgressBar now={now}/>: ""}
                 {now ? <TopInfo now={now}/> : ""} 
                 {now ? <Lyrics now={now}/> : ""}
