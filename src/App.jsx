@@ -72,6 +72,7 @@ function App() {
                 {now ? <Lyrics now={now}/> : ""}
                 {now ? <Controller now={now}/> : ""}  
                 {now ? <QueueList  now={now}/> : ""}
+                {now ? <AddMusic  roomId={roomId}/> : ""}
             </>} />
             <Route path="/add" element={<>
                 {now ? <ProgressBar now={now}/> : ""}

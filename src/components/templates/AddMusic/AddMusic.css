@@ -1,0 +1,159 @@
+/* :::::: toggle button :::::: */
+#drawer {
+	display: none;
+}
+label {
+	cursor: pointer;
+	position: fixed;
+}
+.open {
+	z-index: 2;
+	top: 40px;
+    /* bottom: 32px; */
+	right: 8px;
+	width: 48px;
+	height: 48px;
+	border-radius: 48px;
+	background: #86c0de;
+	transition: background .4s, transform .4s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.open::before,
+.open::after {
+	content: "";
+}
+.open span,
+.open::before,
+.open::after {
+	content: "";
+	position: absolute;
+	top: calc(50% - 1px);
+	left: 30%;
+	width: 40%;
+	border-bottom: 2px solid white;
+	transition: transform .4s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.open::before {
+	transform: translateY(-8px);
+}
+.open::after {
+	transform: translateY(8px);
+}
+.close {
+	z-index: 1;
+	inset: 0;
+	pointer-events: none;
+	transition: background .4s;
+}
+#drawer:checked + .open {
+	background: #dc6688;
+	transform: translateX(-280px);
+}
+#drawer:checked + .open span {
+	transform: scaleX(0);
+}
+#drawer:checked + .open::before {
+	transform: rotate(135deg) scaleX(1.2);
+}
+#drawer:checked + .open::after {
+	transform: rotate(-135deg) scaleX(1.2);
+}
+#drawer:checked ~ .close {
+	pointer-events: auto;
+	background: rgba(0,0,0,.3);
+}
+
+/* :::::: drawer menu :::::: */
+.menu {
+	z-index: 1;
+	position: fixed;
+	overflow: auto;
+	top: 0;
+	right: 0;
+	width: 280px;
+	/* width: 80%; */
+	height: 100%;
+	margin: 0;
+	padding: 10px;
+	box-sizing: border-box;
+	background: rgba(0,0,0,.6);
+	transform: translateX(100%);
+	transition: transform .4s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.menu h2 {
+	color: white;
+	font-family: "Ubuntu Condensed", sans-serif;
+	font-weight: 400;
+	letter-spacing: .1em;
+	text-align: center;
+}
+.menu ul {
+	margin: 0;
+	padding: 0;
+}
+
+.add-music input{
+    width: 95%;
+}
+/* メニューの線 */
+.menu li:not(:first-child) {
+	border-top: 1px solid rgba(255,255,255,.6);
+}
+.menu li:hover {
+	background: black;
+}
+#drawer:checked ~ .menu {
+	transform: none;
+}
+
+.menu li {
+    height: 60px;
+    width: 100%;
+	line-height: 1.4;
+    display: flex;
+    align-items: center;
+	color: white;
+	text-decoration: inherit;
+	transition: background .4s;
+    overflow: hidden;
+}
+
+
+.menu img {
+    border-radius: 0;
+    margin-left: 0;
+    height: 80%;
+}
+
+.item .title-artists{
+    margin-left: 16px;
+    height: 100%;
+    width: 100%;
+}
+
+.item .title-artists .title{
+    display: block;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    height: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    /* text-overflow: ellipsis;  */
+}
+
+
+.item .title-artists .artists{
+    height: 50%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.item .title-artists .artists .artist{
+    /* margin-left: 16px; */
+    /* display: block; */
+    color: rgb(200, 196, 196);
+    font-size: 14px;
+}
+
+
+
