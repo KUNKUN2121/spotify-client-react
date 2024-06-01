@@ -4,9 +4,9 @@ import './QueueList.css';
 const QueueList = ({now}) => {
   return (
     <div className='queue-list'>
-        {now.queue.map((queue) => {
+        {now.queue.map((queue, i) => {
                 // return <p className="artist">{queue}</p>;
-                return <QueueItem queue={queue} />;
+                return <QueueItem queue={queue} key={i}/>;
         })}
         {/* <QueueItem />
         <QueueItem /> */}

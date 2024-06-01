@@ -16,6 +16,7 @@ const Controller = ({now}) => {
         <QueueIcon />
         <QueueMusicIcon />
         <LyricsIcon />
+        
     </div>
   )
 }

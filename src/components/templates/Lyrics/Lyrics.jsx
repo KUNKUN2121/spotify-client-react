@@ -37,15 +37,32 @@ const Lyrics = ({now}) => {
 
     return (
         <div className="lyrics-area" ref={scrollRef}>
-        <Lrc 
-            topBlank
-            bottomBlank
-            className="lrc"
-            lrc={now.lyrics.syncedLyrics}
-            currentMillisecond={now.progress_ms}
-            lineRenderer={lineRenderer}
-            style={lrcStyle}
-        />
+            {now.lyrics.response == 200 ? 
+                <Lrc 
+                     topBlank
+                     bottomBlank
+                     className="lrc"
+                     lrc={now.lyrics.syncedLyrics}
+                     currentMillisecond={now.progress_ms}
+                     lineRenderer={lineRenderer}
+                     style={lrcStyle}
+                 />
+            : now.lyrics.response == 201 ?  
+                <Lrc 
+                    topBlank
+                    bottomBlank
+                    className="lrc"
+                    lrc={now.lyrics.syncedLyrics}
+                    currentMillisecond="-1"
+                    lineRenderer={lineRenderer}
+                    style={lrcStyle}
+                />
+            :                 
+                <div className="no-lyrics">
+                    <p>この曲には歌詞がありません。</p>
+                </div>
+            }
+
         </div>
     
     )

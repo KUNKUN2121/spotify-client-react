@@ -30,11 +30,16 @@ function App() {
         console.log("fetching");
         const response = await fetch(url + "/api/now?room_id=" + roomId);
         const data = await response.json();
+        if(data.progress_ms === "" || data.progress_ms === null || data.progress_ms === undefined){
+            setNow(null);
+            return;
+        }
         data.progress_ms += getDelay(data);
         setNow(data);
     }
     useEffect(() => {
         fetchData(); // 読み込み時に実行
+        
         const interval = setInterval(() => {
             fetchData();
         }, 2000);
@@ -62,17 +67,17 @@ function App() {
         
             return () => clearInterval(interval);
           }, [now]);
-
+            
   return (
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<>
-                {now ? <ProgressBar now={now}/> : ""}
-                {now ? <TopInfo now={now}/> : ""} 
+                <ProgressBar now={now}/>
+                <TopInfo now={now}/>
                 {now ? <Lyrics now={now}/> : ""}
                 {now ? <Controller now={now}/> : ""}  
                 {now ? <QueueList  now={now}/> : ""}
-                {now ? <AddMusic  roomId={roomId}/> : ""}
+                {now ? <AddMusic  roomId={roomId} url={url}/> : ""}
             </>} />
             <Route path="/add" element={<>
                 {now ? <ProgressBar now={now}/> : ""}

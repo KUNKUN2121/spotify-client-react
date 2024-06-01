@@ -1,4 +1,4 @@
-.top-info{
+.top-info {
     display: flex;
     flex-shrink: 0;  /* 高さ固定 */
     height: 60px;
@@ -7,23 +7,23 @@
     margin-top: 8px;
 }
 
-
-img{
+img, .album-art-skeleton {
     margin-left: 16px;
     height: 100%;
     border-radius: 14px;
 }
 
-p{
+p {
     display: inline;
 }
 
-.info{
+.info {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 4px;
 }
+
 .title {
     font-size: 24px;
 }

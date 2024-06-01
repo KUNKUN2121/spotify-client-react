@@ -2,36 +2,27 @@
 #drawer {
 	display: none;
 }
-label {
+.add-music label {
 	cursor: pointer;
 	position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center
 }
 .open {
 	z-index: 2;
-	top: 40px;
-    /* bottom: 32px; */
-	right: 8px;
-	width: 48px;
-	height: 48px;
-	border-radius: 48px;
+    color: white;
+	/* top: 40px; */
+    bottom: 40px;
+	right: 24px;
+	width: 55px;
+	height: 55px;
+	border-radius: 55px;
 	background: #86c0de;
 	transition: background .4s, transform .4s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
-.open::before,
-.open::after {
-	content: "";
-}
-.open span,
-.open::before,
-.open::after {
-	content: "";
-	position: absolute;
-	top: calc(50% - 1px);
-	left: 30%;
-	width: 40%;
-	border-bottom: 2px solid white;
-	transition: transform .4s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
+
+
 .open::before {
 	transform: translateY(-8px);
 }
@@ -46,7 +37,8 @@ label {
 }
 #drawer:checked + .open {
 	background: #dc6688;
-	transform: translateX(-280px);
+    color: black;
+	/* transform: translateX(-280px); */
 }
 #drawer:checked + .open span {
 	transform: scaleX(0);
@@ -157,3 +149,21 @@ label {
 
 
 
+.add-music .item.swiped {
+    transform: translateX(-100px);
+    opacity: 0.5;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.add-music .item {
+    position: relative;
+    transition: transform 0.3s ease; /* Add transition for smooth movement */
+  }
+
+/* .add-music .add-ok{
+    position: absolute;
+    right: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    height: 100%;
+    width: 65%;
+    background: limegreen;
+} */
