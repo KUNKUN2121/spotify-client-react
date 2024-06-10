@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './AddMusic.css';
 import AddMusicItem from './AddMusicItem';
 import SearchIcon from '@mui/icons-material/Search';
@@ -8,6 +8,7 @@ const AddMusic = ({ roomId, url }) => {
   const [searchName, setSearchName] = useState("");
   const [timer, setTimer] = useState(null);
   const [serachResultList, setSerachResultList] = useState([]);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const inputChanged = (e) => {
     setSearchName(e.target.value);
@@ -19,7 +20,7 @@ const AddMusic = ({ roomId, url }) => {
         setSerachResultList: setSerachResultList,
         url: url,
       });
-    }, 500);
+    }, 800);
     setTimer(newTimer);
   };
 
@@ -29,7 +30,6 @@ const AddMusic = ({ roomId, url }) => {
     })
       .then(response => response.json())
       .then(data => {
-        // console.log("CSRF Token:", data); // CSRFトークンをログに出力
         return data.token;
       });
       console.log("CSRF Token:",csrf);
@@ -63,10 +63,24 @@ const AddMusic = ({ roomId, url }) => {
         console.error("Error adding music:", error);
       });
   };
-
+  const toggleDrawer = () => {
+    if(isDrawerOpen != true){
+        getSeachResult({
+            roomId: roomId,
+            q: "",
+            setSerachResultList: setSerachResultList,
+            url: url,
+          });
+          console.log("hello")
+    }else{
+        setSearchName("");
+        // iphoneだとたまに動かなくなる。
+    }
+    setIsDrawerOpen(!isDrawerOpen);
+  };
   return (
     <div className="add-music">
-      <input type="checkbox" id="drawer" />
+      <input type="checkbox" id="drawer" onChange={toggleDrawer}/>
       <label htmlFor="drawer" className="open"><SearchIcon /></label>
       <label htmlFor="drawer" className="close"></label>
       <div className="menu">
@@ -76,6 +90,7 @@ const AddMusic = ({ roomId, url }) => {
             type="text"
             placeholder="キーワードを入力"
             onChange={inputChanged}
+            value={searchName}
           />
           {serachResultList.map((item) => (
             <AddMusicItem key={item.id} item={item} roomId={roomId} url={url} addMusicFun={addMusicFun} />
