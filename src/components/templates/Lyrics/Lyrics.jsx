@@ -6,7 +6,6 @@ const Lyrics = ({now}) => {
     const prevTitleRef = useRef(now.title);
     const scrollRef = useRef(null);
 
-    const scrollableDivRef = useRef(null);
 
     const { signal, recoverAutoScrollImmediately } =
     useRecoverAutoScrollImmediately();
@@ -34,7 +33,15 @@ const Lyrics = ({now}) => {
             </p>
         );
     };
-
+    const autoScrollChangeFunction = (event) => {
+        if (event.autoScroll !== undefined) {
+            if(event.autoScroll != autoScrollEnabled){
+                setAutoScrollEnabled(event.autoScroll);
+                console.log("実行しました。")
+            }
+            
+        }
+    };
     const lrcStyle = {
         flex: 1,
         minHeight: 0,
@@ -46,7 +53,7 @@ const Lyrics = ({now}) => {
             {/* <button type="button" onClick={recoverAutoScrollImmediately}> */}
                 {/* recover auto scroll immediately
             </button> */}
-            {autoScrollEnabled && (
+            {!autoScrollEnabled && (
                 <button type="button" onClick={handleRecoverAutoScrollClick}>
                 recover auto scroll immediaassately
                 </button>
@@ -61,9 +68,8 @@ const Lyrics = ({now}) => {
                      lineRenderer={lineRenderer}
                      recoverAutoScrollInterval={50000}
                      recoverAutoScrollSingal={signal}
+                     onAutoScrollChange={autoScrollChangeFunction}
                      style={lrcStyle}
-                     ref={scrollableDivRef}
-                    //  onScroll={handleScroll}
                  />
             : now.lyrics.response == 201 ?  
                 <Lrc 
