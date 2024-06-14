@@ -6,12 +6,18 @@ const Lyrics = ({now}) => {
     const prevTitleRef = useRef(now.title);
     const scrollRef = useRef(null);
 
-    // スクロールのリセット処理
-    useRecoverAutoScrollImmediately({
-        currentRef: scrollRef,
-        isPlaying: true,
-        time: now.progress_ms
-    });
+    const scrollableDivRef = useRef(null);
+
+    const { signal, recoverAutoScrollImmediately } =
+    useRecoverAutoScrollImmediately();
+    const [autoScrollEnabled, setAutoScrollEnabled] = useState(false);
+
+    // ボタンのクリックハンドラ
+    const handleRecoverAutoScrollClick = () => {
+      recoverAutoScrollImmediately();
+    };
+
+    
 
     const lineRenderer = ({ index, active, line}) => {
         return (
@@ -36,7 +42,15 @@ const Lyrics = ({now}) => {
     };
 
     return (
-        <div className="lyrics-area" ref={scrollRef}>
+        <div className="lyrics-area">
+            {/* <button type="button" onClick={recoverAutoScrollImmediately}> */}
+                {/* recover auto scroll immediately
+            </button> */}
+            {autoScrollEnabled && (
+                <button type="button" onClick={handleRecoverAutoScrollClick}>
+                recover auto scroll immediaassately
+                </button>
+            )}
             {now.lyrics.response == 200 ? 
                 <Lrc 
                      topBlank
@@ -45,7 +59,11 @@ const Lyrics = ({now}) => {
                      lrc={now.lyrics.syncedLyrics}
                      currentMillisecond={now.progress_ms}
                      lineRenderer={lineRenderer}
+                     recoverAutoScrollInterval={50000}
+                     recoverAutoScrollSingal={signal}
                      style={lrcStyle}
+                     ref={scrollableDivRef}
+                    //  onScroll={handleScroll}
                  />
             : now.lyrics.response == 201 ?  
                 <Lrc 
