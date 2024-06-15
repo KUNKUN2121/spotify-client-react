@@ -30,7 +30,7 @@
 }
 
 /* 切れ目を薄く */
-.lyrics-area::before,
+/* .lyrics-area::before,
 .lyrics-area::after {
     content: "";
     position: absolute;
@@ -48,7 +48,7 @@
 .lyrics-area::after {
     bottom: 0;
     background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-}
+} */
 .no-lyrics{
     width: 100%;
     height: 100%;
@@ -56,4 +56,25 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+}
+
+.enable-auto-lyrics-btn{
+    /* reset CSS */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
+    /* */
+    width: 55px;
+    height: 55px;
+    color: white;
+    /* background: #86c0de; */
+    background: #41aeae;
+    border-radius: 55px;
+    position: absolute;
+    bottom: 10px;
+    right: 0px;
+    opacity: 0.6;
 }

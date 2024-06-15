@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState , CSSProperties} from 'react'
 import './Lyrics.css'
 import { Lrc, useRecoverAutoScrollImmediately  } from 'react-lrc';
+import LowPriorityIcon from '@mui/icons-material/LowPriority';
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 // import Lrc from 'react-lrc'; 
 const Lyrics = ({now}) => {
     const prevTitleRef = useRef(now.title);
@@ -54,14 +56,15 @@ const Lyrics = ({now}) => {
                 {/* recover auto scroll immediately
             </button> */}
             {!autoScrollEnabled && (
-                <button type="button" onClick={handleRecoverAutoScrollClick}>
-                recover auto scroll immediaassately
+                <button type="button" className="enable-auto-lyrics-btn"onClick={handleRecoverAutoScrollClick}>
+                    <KeyboardReturnIcon />
                 </button>
+                
             )}
             {now.lyrics.response == 200 ? 
                 <Lrc 
                      topBlank
-                     bottomBlank
+                     verticalSpace={true}
                      className="lrc"
                      lrc={now.lyrics.syncedLyrics}
                      currentMillisecond={now.progress_ms}
@@ -74,7 +77,7 @@ const Lyrics = ({now}) => {
             : now.lyrics.response == 201 ?  
                 <Lrc 
                     topBlank
-                    bottomBlank
+                    verticalSpace={true}
                     className="lrc"
                     lrc={now.lyrics.syncedLyrics}
                     currentMillisecond="-1"
