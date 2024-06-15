@@ -17,6 +17,7 @@ function App() {
     var roomId = "xRouwJ6jx51gv0WPNdWv1kpcaFO5La4d";
 
     const [now, setNow] = useState();
+    const [endMusic, seteEdMusic] = useState(true);
     
     // SpotifyAPIとの遅延時間を計算する関数
     const getDelay = (data) =>{
@@ -42,31 +43,31 @@ function App() {
         
         const interval = setInterval(() => {
             fetchData();
-        }, 2000);
+        }, 5000);
         return () => clearInterval(interval);
-        }, []);
+    }, []);
         
-        useEffect(() => {
-            function addProgress() {
-                if(now != null){
-                    if(now.is_playing == true){
-                        if(now.progress_ms <now.duration_ms) {
-                            setNow(prevNow => ({ ...prevNow, progress_ms: prevNow.progress_ms + 200 }));
-                        }else{
+    useEffect(() => {
+        function addProgress() {
+            if(now != null){
+                if(now.is_playing == true){
+                    if(now.progress_ms <now.duration_ms) {
+                        setNow(prevNow => ({ ...prevNow, progress_ms: prevNow.progress_ms + 200 }));
+                    }else{
+                        clearInterval(progressInterval); 
+                        setTimeout(() => {
                             fetchData();
-                        }
+                        }, 300); // 300ms待ってからfetchDataを実行
                     }
-                }else{
-                    
                 }
             }
-        
-            const interval = setInterval(() => {
-              addProgress();
-            }, 200);
-        
-            return () => clearInterval(interval);
-          }, [now]);
+        }
+        const progressInterval = setInterval(() => {
+            addProgress();
+        }, 200);
+    
+        return () => clearInterval(progressInterval);
+    }, [now]);
             
   return (
     <BrowserRouter>
