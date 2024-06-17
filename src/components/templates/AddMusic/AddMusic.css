@@ -1,5 +1,5 @@
 /* :::::: toggle button :::::: */
-#drawer {
+.add-music #addDrawer {
 	display: none;
 }
 .add-music label {
@@ -9,7 +9,7 @@
     justify-content: center;
     align-items: center
 }
-.open {
+.add-music .open {
 	z-index: 2;
     color: white;
 	/* top: 40px; */
@@ -23,39 +23,39 @@
 }
 
 
-.open::before {
+.add-music .open::before {
 	transform: translateY(-8px);
 }
-.open::after {
+.add-music .open::after {
 	transform: translateY(8px);
 }
-.close {
+.add-music .close {
 	z-index: 1;
 	inset: 0;
 	pointer-events: none;
 	transition: background .4s;
 }
-#drawer:checked + .open {
+.add-music #addDrawer:checked + .open {
 	background: #dc6688;
     color: black;
 	/* transform: translateX(-280px); */
 }
-#drawer:checked + .open span {
+.add-music #addDrawer:checked + .open span {
 	transform: scaleX(0);
 }
-#drawer:checked + .open::before {
+.add-music #addDrawer:checked + .open::before {
 	transform: rotate(135deg) scaleX(1.2);
 }
-#drawer:checked + .open::after {
+.add-music #addDrawer:checked + .open::after {
 	transform: rotate(-135deg) scaleX(1.2);
 }
-#drawer:checked ~ .close {
+.add-music #addDrawer:checked ~ .close {
 	pointer-events: auto;
 	background: rgba(0,0,0,.3);
 }
 
 /* :::::: drawer menu :::::: */
-.menu {
+.add-music .menu {
 	z-index: 1;
 	position: fixed;
 	overflow: auto;
@@ -71,14 +71,14 @@
 	transform: translateX(100%);
 	transition: transform .4s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
-.menu h2 {
+.add-music .menu h2 {
 	color: white;
 	font-family: "Ubuntu Condensed", sans-serif;
 	font-weight: 400;
 	letter-spacing: .1em;
 	text-align: center;
 }
-.menu ul {
+.add-music .menu ul {
 	margin: 0;
 	padding: 0;
 }
@@ -87,17 +87,17 @@
     width: 95%;
 }
 /* メニューの線 */
-.menu li:not(:first-child) {
+.add-music .menu li:not(:first-child) {
 	border-top: 1px solid rgba(255,255,255,.6);
 }
-.menu li:hover {
+.add-music .menu li:hover {
 	background: black;
 }
-#drawer:checked ~ .menu {
+.add-music #addDrawer:checked ~ .menu {
 	transform: none;
 }
 
-.menu li {
+.add-music .menu li {
     height: 60px;
     width: 100%;
 	line-height: 1.4;
@@ -110,19 +110,19 @@
 }
 
 
-.menu img {
+.add-music .menu img {
     border-radius: 0;
     margin-left: 0;
     height: 80%;
 }
 
-.item .title-artists{
+.add-music .item .title-artists{
     margin-left: 16px;
     height: 100%;
     width: 100%;
 }
 
-.item .title-artists .title{
+.add-music .item .title-artists .title{
     display: block;
     display: flex;
     align-items: center;
@@ -134,13 +134,13 @@
 }
 
 
-.item .title-artists .artists{
+.add-music .item .title-artists .artists{
     height: 50%;
     width: 100%;
     overflow: hidden;
 }
 
-.item .title-artists .artists .artist{
+.add-music .item .title-artists .artists .artist{
     /* margin-left: 16px; */
     /* display: block; */
     color: rgb(200, 196, 196);

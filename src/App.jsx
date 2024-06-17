@@ -8,7 +8,7 @@ import AddMusic from './components/templates/AddMusic/AddMusic.jsx'
 import Lyrics from './components/templates/Lyrics/Lyrics.jsx'
 import TopInfo from './components/templates/TopInfo/TopInfo.jsx'
 import QueueList from './components/templates/QueueList/QueueList.jsx'
-import PlayBack from './components/templates/PlayBack/PlayBack.jsx'
+import HistoryMusic from './components/templates/HistoryMusic/HistoryMusic.jsx'
 import Controller from './components/templates/Controller/Controller.jsx'
 import { useEffect, useState } from 'react';
 
@@ -18,7 +18,7 @@ function App() {
     var roomId = "xRouwJ6jx51gv0WPNdWv1kpcaFO5La4d";
 
     const [now, setNow] = useState();
-    const [endMusic, seteEdMusic] = useState(true);
+    const [queueListOpen, setQueueListOpen] = useState(true);
     
     // SpotifyAPIとの遅延時間を計算する関数
     const getDelay = (data) =>{
@@ -69,6 +69,8 @@ function App() {
     
         return () => clearInterval(progressInterval);
     }, [now]);
+
+    const toggleQueueList = () => setQueueListOpen(!queueListOpen)
             
   return (
     <BrowserRouter>
@@ -76,19 +78,23 @@ function App() {
             <Route path="/" element={<>
                 <ProgressBar now={now}/>
                 <TopInfo now={now}/>
-                {now ? <Lyrics now={now}/> : ""}
-                {now ? <Controller now={now}/> : ""}  
-                {/* {now ? <QueueList  now={now}/> : ""} */}
+                {now ? <Controller now={now} toggleQueueList={toggleQueueList}/> : ""}  
+                {now ? <Lyrics now={now} queueListOpen={queueListOpen}/> : ""}
+                {now ? 
+                    queueListOpen ?
+                     <QueueList  now={now}/> 
+                     : ""
+                : ""}
                 {now ? <AddMusic  roomId={roomId} url={url}/> : ""}
-                {now ? <PlayBack  now={now} roomId={roomId} url={url}/> : ""}
             </>} />
             <Route path="/add" element={<>
                 {now ? <ProgressBar now={now}/> : ""}
                 <AddMusic />
             </>} />
             <Route path="/history" element={<>
-                {now ? <ProgressBar now={now}/> : ""}
-                <AddMusic />
+                <ProgressBar now={now}/>
+                <TopInfo now={now}/>
+                {now ? <HistoryMusic now={now} roomId={roomId} url={url}/> : ""}
             </>} />
             
 

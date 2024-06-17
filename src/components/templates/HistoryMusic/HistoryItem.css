@@ -1,0 +1,38 @@
+
+.history-item{
+    height: 100px;
+}
+
+.history-item .contents{
+    height: 40px;
+    display: flex;
+    margin: 12px auto 8px;
+    /* margin-bottom: 30px; */
+    /* border: 1px solid black; */
+}
+
+
+.history-item .contents .album-art{
+    border-radius: 0;
+    margin-left: 0px;
+    /* width: 50px; */
+    height: 100%;
+}
+.history-item .contents .info{
+    padding-left: 10px;
+}
+.history-item .contents .info .title{
+    font-size: 20px;
+    height: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.history-item .contents .info .artists{
+    /* padding-top: 4px; */
+    font-size: 8px;
+}
+.history-item .contents .info .artist{
+    display: inline;
+    padding-top: 16px;
+    font-size: 16px;
+}

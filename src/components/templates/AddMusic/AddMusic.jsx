@@ -80,9 +80,9 @@ const AddMusic = ({ roomId, url }) => {
   };
   return (
     <div className="add-music">
-      <input type="checkbox" id="drawer" onChange={toggleDrawer}/>
-      <label htmlFor="drawer" className="open"><SearchIcon /></label>
-      <label htmlFor="drawer" className="close"></label>
+      <input type="checkbox" id="addDrawer" onChange={toggleDrawer}/>
+      <label htmlFor="addDrawer" className="open"><SearchIcon /></label>
+      <label htmlFor="addDrawer" className="close"></label>
       <div className="menu">
         <h2>曲の追加</h2>
         <ul>

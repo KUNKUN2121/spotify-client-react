@@ -7,15 +7,15 @@ import SearchIcon from '@mui/icons-material/Search';
 import QueueMusicIcon from '@mui/icons-material/QueueMusic';
 import QueueIcon from '@mui/icons-material/Queue';
 import LyricsIcon from '@mui/icons-material/Lyrics';
+import {Link} from 'react-router-dom';
+import "./Controller.css";
 
-const Controller = ({now}) => {
+const Controller = ({now, toggleQueueList} ) => {
   return (
-    <div>
-        <HistoryIcon />
-        <SettingsIcon />
-        <QueueIcon />
-        <QueueMusicIcon />
-        <LyricsIcon />
+    <div className="controller">
+        <button ><Link to='/'><SettingsIcon style={{fontSize: 32}}/></Link></button>
+        <button onClick={toggleQueueList}><QueueMusicIcon style={{fontSize: 32}} /></button>
+        <button><Link to='/history'><HistoryIcon style={{fontSize: 32}}/></Link></button>
         
     </div>
   )
