@@ -24,7 +24,7 @@ const AddMusic = ({ roomId, url }) => {
         setSerachResultList: setSerachResultList,
         url: url,
       });
-    }, 800);
+    }, 500);
     setTimer(newTimer);
   };
 
