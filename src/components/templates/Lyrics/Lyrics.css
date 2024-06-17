@@ -74,7 +74,8 @@
     background: #41aeae;
     border-radius: 55px;
     position: absolute;
-    bottom: 10px;
+    /* bottom: 10px; */
+    top: 10px;
     right: 0px;
     opacity: 0.6;
 }

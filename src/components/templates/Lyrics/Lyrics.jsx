@@ -64,7 +64,7 @@ const Lyrics = ({now}) => {
             {now.lyrics.response == 200 ? 
                 <Lrc 
                      topBlank
-                     verticalSpace={true}
+                    //  verticalSpace={true}
                      className="lrc"
                      lrc={now.lyrics.syncedLyrics}
                      currentMillisecond={now.progress_ms}
@@ -77,7 +77,7 @@ const Lyrics = ({now}) => {
             : now.lyrics.response == 201 ?  
                 <Lrc 
                     topBlank
-                    verticalSpace={true}
+                    // verticalSpace={true}
                     className="lrc"
                     lrc={now.lyrics.syncedLyrics}
                     currentMillisecond="-1"
@@ -89,7 +89,6 @@ const Lyrics = ({now}) => {
                     <p>この曲には歌詞がありません。</p>
                 </div>
             }
-
         </div>
     
     )

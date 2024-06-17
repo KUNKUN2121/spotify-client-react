@@ -8,6 +8,7 @@ import AddMusic from './components/templates/AddMusic/AddMusic.jsx'
 import Lyrics from './components/templates/Lyrics/Lyrics.jsx'
 import TopInfo from './components/templates/TopInfo/TopInfo.jsx'
 import QueueList from './components/templates/QueueList/QueueList.jsx'
+import PlayBack from './components/templates/PlayBack/PlayBack.jsx'
 import Controller from './components/templates/Controller/Controller.jsx'
 import { useEffect, useState } from 'react';
 
@@ -77,10 +78,15 @@ function App() {
                 <TopInfo now={now}/>
                 {now ? <Lyrics now={now}/> : ""}
                 {now ? <Controller now={now}/> : ""}  
-                {now ? <QueueList  now={now}/> : ""}
+                {/* {now ? <QueueList  now={now}/> : ""} */}
                 {now ? <AddMusic  roomId={roomId} url={url}/> : ""}
+                {now ? <PlayBack  now={now} roomId={roomId} url={url}/> : ""}
             </>} />
             <Route path="/add" element={<>
+                {now ? <ProgressBar now={now}/> : ""}
+                <AddMusic />
+            </>} />
+            <Route path="/history" element={<>
                 {now ? <ProgressBar now={now}/> : ""}
                 <AddMusic />
             </>} />

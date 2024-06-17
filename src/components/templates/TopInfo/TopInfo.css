@@ -7,10 +7,10 @@
     margin-top: 8px;
 }
 
-img, .album-art-skeleton {
+.top-info img, .album-art-skeleton {
     margin-left: 16px;
     height: 100%;
-    border-radius: 14px;
+    /* border-radius: 14px; */
 }
 
 p {

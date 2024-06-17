@@ -1,16 +1,30 @@
 
 .queue-item{
-    margin: 24px auto;
+    height: 40px;
+    display: flex;
+    margin: 12px auto 8px;
+    /* margin-bottom: 30px; */
     /* border: 1px solid black; */
 }
-.queue-item .title{
+
+
+.queue-item .album-art{
+    border-radius: 0;
+    margin-left: 0px;
+    /* width: 50px; */
+    height: 100%;
+}
+.queue-item .info{
+    padding-left: 10px;
+}
+.queue-item .info .title{
     font-size: 20px;
 }
-.queue-item .artists{
+.queue-item .info .artists{
     padding-top: 4px;
     font-size: 8px;
 }
-.queue-item .artist{
+.queue-item .info .artist{
     display: inline;
     padding-top: 16px;
     font-size: 16px;
