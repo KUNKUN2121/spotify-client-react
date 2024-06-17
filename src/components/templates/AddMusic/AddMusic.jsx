@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './AddMusic.css';
 import AddMusicItem from './AddMusicItem';
 import SearchIcon from '@mui/icons-material/Search';
-import CloseIcon from '@mui/icons-material/Close';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const AddMusic = ({ roomId, url }) => {
   const [searchName, setSearchName] = useState("");
   const [timer, setTimer] = useState(null);
   const [serachResultList, setSerachResultList] = useState([]);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
   const inputChanged = (e) => {
     setSearchName(e.target.value);
@@ -25,6 +29,9 @@ const AddMusic = ({ roomId, url }) => {
   };
 
   const addMusicFun = async (item, roomId, url) => {
+        setSnackbarMessage("追加中・・・");
+        setSnackbarSeverity("info");
+        setSnackbarOpen(true);
     const csrf = await fetch(`${url}/api/csrf-token`, {
       credentials: 'include', // セッション情報を含める
     })
@@ -32,7 +39,7 @@ const AddMusic = ({ roomId, url }) => {
       .then(data => {
         return data.token;
       });
-      console.log("CSRF Token:",csrf);
+    console.log("CSRF Token:", csrf);
     console.log("Adding music:", item);
     const posturl = `${url}/api/add`;
     const requestOptions = {
@@ -58,29 +65,41 @@ const AddMusic = ({ roomId, url }) => {
       })
       .then((data) => {
         console.log(data);
+        setSnackbarMessage("追加されました！");
+        setSnackbarSeverity("success");
+        setSnackbarOpen(true);
       })
       .catch((error) => {
-        console.error("Error adding music:", error);
+        console.error("追加中にエラーが発生しました:", error);
+        setSnackbarMessage("音楽の追加に失敗しました");
+        setSnackbarSeverity("error");
+        setSnackbarOpen(true);
       });
   };
+
   const toggleDrawer = () => {
-    if(isDrawerOpen != true){
-        getSeachResult({
-            roomId: roomId,
-            q: "",
-            setSerachResultList: setSerachResultList,
-            url: url,
-          });
-          console.log("hello")
-    }else{
-        setSearchName("");
-        // iphoneだとたまに動かなくなる。
+    if (isDrawerOpen !== true) {
+      getSeachResult({
+        roomId: roomId,
+        q: "",
+        setSerachResultList: setSerachResultList,
+        url: url,
+      });
+      console.log("hello")
+    } else {
+      setSearchName("");
+      // iPhoneだとたまに動かなくなる。
     }
     setIsDrawerOpen(!isDrawerOpen);
   };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
+
   return (
     <div className="add-music">
-      <input type="checkbox" id="addDrawer" onChange={toggleDrawer}/>
+      <input type="checkbox" id="addDrawer" onChange={toggleDrawer} />
       <label htmlFor="addDrawer" className="open"><SearchIcon /></label>
       <label htmlFor="addDrawer" className="close"></label>
       <div className="menu">
@@ -97,6 +116,20 @@ const AddMusic = ({ roomId, url }) => {
           ))}
         </ul>
       </div>
+      <Snackbar 
+        open={snackbarOpen} 
+        autoHideDuration={6000} 
+        onClose={handleSnackbarClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      >
+        <MuiAlert 
+          onClose={handleSnackbarClose} 
+          severity={snackbarSeverity} 
+          sx={{ width: '100%' }}
+        >
+          {snackbarMessage}
+        </MuiAlert>
+      </Snackbar>
     </div>
   );
 };
@@ -113,7 +146,7 @@ const getSeachResult = async ({ roomId, q, setSerachResultList, url }) => {
         setSerachResultList(data.result.tracks.items);
         console.log(data.result.tracks.items);
       } else {
-        console.log("no results");
+        console.log("検索結果がありません");
       }
     });
 };
