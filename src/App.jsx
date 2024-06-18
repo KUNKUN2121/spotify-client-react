@@ -11,14 +11,18 @@ import QueueList from './components/templates/QueueList/QueueList.jsx'
 import HistoryMusic from './components/templates/HistoryMusic/HistoryMusic.jsx'
 import Controller from './components/templates/Controller/Controller.jsx'
 import { useEffect, useState } from 'react';
+import {Color, Palette} from "color-thief-react";
+import BackImg from './components/BackImg/BackImg.jsx';
+import { toBePartiallyChecked } from '@testing-library/jest-dom/dist/matchers.js';
+import GenBackImg from './components/BackImg/GenBackImg.jsx';
 
 function App() {
-
     var url = "http://100.73.31.2";
     var roomId = "xRouwJ6jx51gv0WPNdWv1kpcaFO5La4d";
 
     const [now, setNow] = useState();
     const [queueListOpen, setQueueListOpen] = useState(true);
+    const [BackGroundColor, setBackGroundColor] = useState([]);
     
     // SpotifyAPIとの遅延時間を計算する関数
     const getDelay = (data) =>{
@@ -65,12 +69,23 @@ function App() {
         }
         const progressInterval = setInterval(() => {
             addProgress();
-        }, 200);
+        }, 1000);
     
         return () => clearInterval(progressInterval);
     }, [now]);
 
-    const toggleQueueList = () => setQueueListOpen(!queueListOpen)
+    const toggleQueueList = () => {
+        setQueueListOpen(!queueListOpen);
+    };
+
+
+    useEffect(() => {
+        console.log(BackGroundColor);
+        // Background color setting for body
+        const gradient = `linear-gradient(20deg, ${BackGroundColor.join(",")})`;
+        document.body.style.background = gradient; // Assuming BackGroundColor is an array of colors and we set the first one
+      }, [BackGroundColor])
+    
             
   return (
     <BrowserRouter>
@@ -86,6 +101,7 @@ function App() {
                      : ""
                 : ""}
                 {now ? <AddMusic  roomId={roomId} url={url}/> : ""}
+                
             </>} />
             <Route path="/add" element={<>
                 {now ? <ProgressBar now={now}/> : ""}
@@ -95,6 +111,10 @@ function App() {
                 <ProgressBar now={now}/>
                 <TopInfo now={now}/>
                 {now ? <HistoryMusic now={now} roomId={roomId} url={url}/> : ""}
+            </>} />
+            <Route path="/back" element={<>
+                {now ? <BackImg setBackGroundColor={setBackGroundColor} now={now}/>  : "" }
+                {BackGroundColor ? <GenBackImg color={BackGroundColor} /> : ""}
             </>} />
             
 
