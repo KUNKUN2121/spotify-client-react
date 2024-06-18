@@ -16,9 +16,12 @@ import BackImg from './components/BackImg/BackImg.jsx';
 import { toBePartiallyChecked } from '@testing-library/jest-dom/dist/matchers.js';
 import GenBackImg from './components/BackImg/GenBackImg.jsx';
 
+import useWakeLock from "react-use-wake-lock";
 function App() {
     var url = "http://100.73.31.2";
     var roomId = "xRouwJ6jx51gv0WPNdWv1kpcaFO5La4d";
+
+    const { isSupported, isLocked, request, release } = useWakeLock();
 
     const [now, setNow] = useState();
     const [queueListOpen, setQueueListOpen] = useState(true);
@@ -91,6 +94,13 @@ function App() {
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<>
+                <div>
+                    <h3>Screen Wake Lock API supported: {isSupported ? "Yes" : "No"}</h3>
+                    <h3>Locked: {`${isLocked ? "Yes" : "No"}`}</h3>
+                    <button type="button" onClick={() => (isLocked ? release() : request())}>
+                        {isLocked ? "Release" : "Request"}
+                    </button>
+                </div>
                 <ProgressBar now={now}/>
                 <TopInfo now={now}/>
                 {now ? <Controller now={now} toggleQueueList={toggleQueueList}/> : ""}  

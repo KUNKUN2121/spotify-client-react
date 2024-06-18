@@ -1,5 +1,6 @@
 {
   "name": "spotify-client-react",
+  "homepage": "https://kunkun2121.github.io/spotify-client-react/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,18 +13,26 @@
     "@testing-library/user-event": "^13.5.0",
     "color-thief-react": "^2.1.0",
     "normalize.css": "^8.0.1",
+    "nosleep": "^2.0.0",
+    "nosleep.js": "^0.12.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-lrc": "^3.2.1",
     "react-router-dom": "^6.23.1",
+    "react-screen-wake-lock": "^3.0.2",
     "react-scripts": "5.0.1",
+    "react-use-wake-lock": "^1.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "rm": "rm -rf docs",
+    "mv": "mv build docs",
+    "git": "git add . && git commit && git push origin master",
+    "deploy": "npm run rm && npm run build && npm run mv && npm run git"
   },
   "eslintConfig": {
     "extends": [
