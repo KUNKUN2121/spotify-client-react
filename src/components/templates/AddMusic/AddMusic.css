@@ -18,7 +18,8 @@
 	width: 55px;
 	height: 55px;
 	border-radius: 55px;
-	background: #86c0de;
+	/* background: #86c0de; */
+	background: #604498;
 	transition: background .4s, transform .4s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
@@ -36,7 +37,7 @@
 	transition: background .4s;
 }
 .add-music #addDrawer:checked + .open {
-	background: #dc6688;
+	background: #837799;
     color: black;
 	/* transform: translateX(-280px); */
 }

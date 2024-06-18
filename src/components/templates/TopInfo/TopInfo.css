@@ -26,6 +26,11 @@ p {
 
 .title {
     font-size: 24px;
+    color: white;
+}
+
+.artist{
+    color: white;
 }
 
 /* アーティスト コンマ 入力 */

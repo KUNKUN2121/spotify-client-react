@@ -28,6 +28,8 @@ footer, header, hgroup, menu, nav, section {
 
 body {
     line-height: 1;
+    /* background: #23282F; */
+    background: #161616;
 }
 
 ol, ul {

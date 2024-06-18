@@ -1,4 +1,5 @@
 .controller{
+    margin: 10px 0px;
     display: flex;
     justify-content: space-around;
 }
@@ -10,6 +11,9 @@
     outline: none;
     padding: 0;
     appearance: none;
-
+    color: #837799;
 }
 
+.controller a{
+    color: #837799;
+}

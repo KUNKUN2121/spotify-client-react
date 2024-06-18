@@ -17,6 +17,7 @@ body {
 }
 
 .progressduration{
+    color: #eee;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -24,10 +25,11 @@ body {
 }
 
 .progressduration .bar{
+    border-radius: 30%;
     width: 100%;
     height: 8px;
-    background: #B8B8B8;
-    background: linear-gradient(#C0A2B0, #C0A2B0) no-repeat #B8B8B8;
+    background: #837799;
+    background: linear-gradient(#604498, #604498) no-repeat #837799;
     /* width: 160px; */
     /* width: 100;
     height: 10px;

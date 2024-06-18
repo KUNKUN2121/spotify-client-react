@@ -48,7 +48,7 @@ function App() {
         
         const interval = setInterval(() => {
             fetchData();
-        }, 5000);
+        }, 1000);
         return () => clearInterval(interval);
     }, []);
         
@@ -56,20 +56,20 @@ function App() {
         function addProgress() {
             if(now != null){
                 if(now.is_playing == true){
-                    if(now.progress_ms <now.duration_ms) {
+                    if(now.progress_ms < now.duration_ms) {
                         setNow(prevNow => ({ ...prevNow, progress_ms: prevNow.progress_ms + 200 }));
                     }else{
                         clearInterval(progressInterval); 
                         setTimeout(() => {
                             fetchData();
-                        }, 300); // 300ms待ってからfetchDataを実行
+                        }, 300); // 300ms待って[からfetchDataを実行
                     }
                 }
             }
         }
         const progressInterval = setInterval(() => {
             addProgress();
-        }, 1000);
+        }, 200);
     
         return () => clearInterval(progressInterval);
     }, [now]);

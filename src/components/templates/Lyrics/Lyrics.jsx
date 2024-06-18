@@ -25,9 +25,9 @@ const Lyrics = ({now}) => {
             <p
                 key={index}
                 style={{
-                    color: active ? 'red' : 'black',
+                    color: active ? 'white' : '#686D76',
                     transition: 'color 0.3s ease',
-                    fontSize: '32px',
+                    fontSize: '30px',
                     textAlign: 'center',
                 }}
             >

@@ -1,6 +1,6 @@
 .queue-list{
     flex-shrink: 0;  /* 高さ固定 */
-    margin: 0px 16px;
+    margin: 0px 16px 8px;
 }
 .queue-list p{
     display: block;
