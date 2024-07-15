@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './AddMusic.css';
 import AddMusicItem from './AddMusicItem';
 import SearchIcon from '@mui/icons-material/Search';
@@ -15,6 +15,7 @@ const AddMusic = ({ roomId, url }) => {
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
   const [snackbarPosition, setSnackbarPosition] = useState({ bottom: '10px' });
   const [loading, setLoading] = useState(false);
+  const inputElement = useRef(null);
 
 
   useEffect(() => {
@@ -91,6 +92,11 @@ const AddMusic = ({ roomId, url }) => {
 
   const toggleDrawer = () => {
     setSearchName("");
+    if(isDrawerOpen === false) {
+        if (inputElement.current) {
+            inputElement.current.focus();
+        }
+    }
     setIsDrawerOpen(!isDrawerOpen);
   };
 
@@ -141,6 +147,7 @@ const AddMusic = ({ roomId, url }) => {
                 onChange={inputChanged}
                 value={searchName}
                 id="input"
+                ref={inputElement}
             />
             {searchResultList.map((item) => (
                 <AddMusicItem key={item.id} item={item} roomId={roomId} url={url} addMusicFun={addMusicFun} />
