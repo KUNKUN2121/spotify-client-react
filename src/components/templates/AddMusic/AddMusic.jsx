@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AddMusic.css';
 import AddMusicItem from './AddMusicItem';
 import SearchIcon from '@mui/icons-material/Search';
@@ -7,31 +7,35 @@ import MuiAlert from '@mui/material/Alert';
 
 const AddMusic = ({ roomId, url }) => {
   const [searchName, setSearchName] = useState("");
-  const [timer, setTimer] = useState(null);
-  const [serachResultList, setSerachResultList] = useState([]);
+  const [searchResultList, setSearchResultList] = useState([]);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchName) {
+        getSearchResult({
+          roomId: roomId,
+          q: searchName,
+          setSearchResultList: setSearchResultList,
+          url: url,
+        });
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [searchName, roomId, url]);
+
   const inputChanged = (e) => {
     setSearchName(e.target.value);
-    clearTimeout(timer);
-    const newTimer = setTimeout(() => {
-      getSeachResult({
-        roomId: roomId,
-        q: searchName,
-        setSerachResultList: setSerachResultList,
-        url: url,
-      });
-    }, 500);
-    setTimer(newTimer);
   };
 
   const addMusicFun = async (item, roomId, url) => {
-        setSnackbarMessage("追加中・・・");
-        setSnackbarSeverity("info");
-        setSnackbarOpen(true);
+    setSnackbarMessage("追加中・・・");
+    setSnackbarSeverity("info");
+    setSnackbarOpen(true);
     const csrf = await fetch(`${url}/api/csrf-token`, {
       credentials: 'include', // セッション情報を含める
     })
@@ -79,10 +83,10 @@ const AddMusic = ({ roomId, url }) => {
 
   const toggleDrawer = () => {
     if (isDrawerOpen !== true) {
-      getSeachResult({
+      getSearchResult({
         roomId: roomId,
         q: "",
-        setSerachResultList: setSerachResultList,
+        setSearchResultList: setSearchResultList,
         url: url,
       });
       console.log("hello")
@@ -111,7 +115,7 @@ const AddMusic = ({ roomId, url }) => {
             onChange={inputChanged}
             value={searchName}
           />
-          {serachResultList.map((item) => (
+          {searchResultList.map((item) => (
             <AddMusicItem key={item.id} item={item} roomId={roomId} url={url} addMusicFun={addMusicFun} />
           ))}
         </ul>
@@ -134,7 +138,7 @@ const AddMusic = ({ roomId, url }) => {
   );
 };
 
-const getSeachResult = async ({ roomId, q, setSerachResultList, url }) => {
+const getSearchResult = async ({ roomId, q, setSearchResultList, url }) => {
   const getUrl = `${url}/api/search/`;
   const params = { room_id: roomId, q: q };
   const query = new URLSearchParams(params);
@@ -143,7 +147,7 @@ const getSeachResult = async ({ roomId, q, setSerachResultList, url }) => {
     .then((res) => res.json())
     .then((data) => {
       if (data.result) {
-        setSerachResultList(data.result.tracks.items);
+        setSearchResultList(data.result.tracks.items);
         console.log(data.result.tracks.items);
       } else {
         console.log("検索結果がありません");
