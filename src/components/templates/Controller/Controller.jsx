@@ -17,18 +17,16 @@ const Controller = ({now, toggleQueueList , isLocked, release, request} ) => {
     // </button>
   return (
     <div className="controller">
-            <button type="button" onClick={() => (isLocked ? release() : request())}>
-        {isLocked ? 
-        // WakeOnLock 有効
-        <LightbulbIcon style={{fontSize: 32,}}/>
-        : 
-        <LightbulbIcon style={{fontSize: 32, opacity: 0.33 }}/>
-        }
-    </button>
-        {/* <button onClick={toggleQueueList}><QueueMusicIcon style={{fontSize: 32}} /></button> */}
-        <button><Link to='/queue'><QueueMusicIcon style={{fontSize: 32}} /></Link></button>
         <button><Link to='/history'><HistoryIcon style={{fontSize: 32}}/></Link></button>
-        
+        <button><Link to='/queue'><QueueMusicIcon style={{fontSize: 32}} /></Link></button>
+        <button type="button" onClick={() => (isLocked ? release() : request())}>
+            {isLocked ? 
+            // WakeOnLock 有効
+            <LightbulbIcon style={{fontSize: 32,}}/>
+            : 
+            <LightbulbIcon style={{fontSize: 32, opacity: 0.33 }}/>
+            }
+        </button>
     </div>
   )
 }
