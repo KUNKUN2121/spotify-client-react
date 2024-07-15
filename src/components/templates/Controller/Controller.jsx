@@ -12,9 +12,6 @@ import {Link} from 'react-router-dom';
 import "./Controller.css";
 
 const Controller = ({now, toggleQueueList , isLocked, release, request} ) => {
-    // <button type="button" onClick={() => (isLocked ? release() : request())}>
-    //     {isLocked ? "Release" : "Request"}
-    // </button>
   return (
     <div className="controller">
         <button><Link to='/history'><HistoryIcon style={{fontSize: 32}}/></Link></button>
@@ -24,7 +21,7 @@ const Controller = ({now, toggleQueueList , isLocked, release, request} ) => {
             // WakeOnLock 有効
             <LightbulbIcon style={{fontSize: 32,}}/>
             : 
-            <LightbulbIcon style={{fontSize: 32, opacity: 0.33 }}/>
+            <LightbulbIcon style={{fontSize: 32, opacity: 0.3 }}/>
             }
         </button>
     </div>
