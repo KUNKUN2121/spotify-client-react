@@ -1,6 +1,6 @@
 {
   "name": "spotify-client-react",
-  "homepage": "https://kunkun2121.github.io/spotify-client-react/",
+  "homepage": "/app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

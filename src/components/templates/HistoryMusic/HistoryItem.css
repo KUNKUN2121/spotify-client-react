@@ -1,7 +1,14 @@
-
+.history-controller{
+    color: #eee;
+}
+.history-music{
+    margin-top: 12px;
+}
 .history-item{
     height: 100px;
+    color: #eee;
 }
+
 
 .history-item .contents{
     height: 40px;

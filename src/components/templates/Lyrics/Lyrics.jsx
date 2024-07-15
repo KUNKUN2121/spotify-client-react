@@ -35,6 +35,22 @@ const Lyrics = ({now}) => {
             </p>
         );
     };
+    const lineRendererNoSync = ({ index, active, line}) => {
+        return (
+            <p
+                key={index}
+                style={{
+                    color: 'white',
+                    opacity: '0.9',
+                    transition: 'color 0.3s ease',
+                    fontSize: '30px',
+                    textAlign: 'center',
+                }}
+            >
+                {line.content}
+            </p>
+        );
+    };
     const autoScrollChangeFunction = (event) => {
         if (event.autoScroll !== undefined) {
             if(event.autoScroll != autoScrollEnabled){
@@ -55,7 +71,7 @@ const Lyrics = ({now}) => {
             {/* <button type="button" onClick={recoverAutoScrollImmediately}> */}
                 {/* recover auto scroll immediately
             </button> */}
-            {!autoScrollEnabled && (
+            {!autoScrollEnabled && now.lyrics.response == 200 && (
                 <button type="button" className="enable-auto-lyrics-btn"onClick={handleRecoverAutoScrollClick}>
                     <KeyboardReturnIcon />
                 </button>
@@ -81,7 +97,7 @@ const Lyrics = ({now}) => {
                     className="lrc"
                     lrc={now.lyrics.syncedLyrics}
                     currentMillisecond="-1"
-                    lineRenderer={lineRenderer}
+                    lineRenderer={lineRendererNoSync}
                     style={lrcStyle}
                 />
             :                 
